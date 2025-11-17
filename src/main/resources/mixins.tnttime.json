@@ -1,0 +1,12 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.7",
+  "package": "club.sk1er.mods.tnttimer.mixins",
+  "refmap": "mixins.${mod_id}.refmap.json",
+  "injectors": {
+    "maxShiftBy": 5
+  },
+  "client": [
+    "RenderTNTPrimedMixin"
+  ]
+}

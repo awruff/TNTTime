@@ -1,6 +1,6 @@
 package club.sk1er.mods.tnttimer;
 
-import gg.essential.api.EssentialAPI;
+import cc.polyfrost.oneconfig.utils.hypixel.HypixelUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -23,11 +23,14 @@ import org.lwjgl.opengl.GL11;
 import java.awt.Color;
 import java.text.DecimalFormat;
 
-@Mod(modid = "tnttime", name = "TNT Time", version = "1.1.0")
+@Mod(modid = TNTTime.ID, name = TNTTime.NAME, version = TNTTime.VERSION)
 public class TNTTime {
+    public static final String ID = "@MOD_ID@";
+    public static final String NAME = "@MOD_NAME@";
+    public static final String VERSION = "@MOD_VERSION@";
 
     @Mod.Instance
-    public static TNTTime instance;
+    public static TNTTime INSTANCE;
 
     private final Minecraft mc = Minecraft.getMinecraft();
     private final DecimalFormat timeFormatter = new DecimalFormat("0.00");
@@ -50,7 +53,7 @@ public class TNTTime {
 
         this.checkTimer = 0;
 
-        if (!EssentialAPI.getMinecraftUtil().isHypixel()) {
+        if (!HypixelUtils.INSTANCE.isHypixel()) {
             this.playingBedwars = false;
             return;
         }
@@ -73,7 +76,6 @@ public class TNTTime {
         }
     }
 
-    @SuppressWarnings("unused")
     public void renderTag(RenderTNTPrimed tntRenderer, EntityTNTPrimed tntPrimed, double x, double y, double z, float partialTicks) {
         // hypixel changes the fuse time in bedwars to explode around the 28th tick,
         // which makes the value of the fuse starting timer presumably 52 instead of 80

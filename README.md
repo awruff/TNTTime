@@ -1,1 +1,2 @@
 # TNTTimer
+but oneconfig..!*

@@ -1,44 +1,36 @@
-import gg.essential.gradle.util.noServerRunConfigs
+import dev.deftu.gradle.utils.GameSide
 
 plugins {
-    kotlin("jvm")
-    id("gg.essential.multi-version")
-    id("gg.essential.defaults")
+    id("java")
+    val dgtVer = "2.64.0"
+    id("dev.deftu.gradle.tools") version(dgtVer)
+    id("dev.deftu.gradle.tools.resources") version(dgtVer)
+    id("dev.deftu.gradle.tools.bloom") version(dgtVer)
+    id("dev.deftu.gradle.tools.shadow") version(dgtVer)
+    id("dev.deftu.gradle.tools.minecraft.loom") version(dgtVer)
 }
 
-val modGroup: String by project
-val modBaseName: String by project
-group = modGroup
-base.archivesName.set("$modBaseName-${platform.mcVersionStr}")
-
-loom {
-    noServerRunConfigs()
-    launchConfigs {
-        getByName("client") {
-            property("fml.coreMods.load", "club.sk1er.mods.tnttimer.forge.FMLLoadingPlugin")
-            arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
-        }
-    }
+repositories {
+    maven("https://repo.polyfrost.org/releases")
+    maven("https://repo.polyfrost.org/snapshots")
 }
-
-val embed by configurations.creating
-configurations.implementation.get().extendsFrom(embed)
 
 dependencies {
-    compileOnly("gg.essential:essential-$platform:2666")
-    embed("gg.essential:loader-launchwrapper:1.1.3")
+    compileOnly("cc.polyfrost:oneconfig-1.8.9-forge:0.2.2-alpha+")
+
+    shade("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta17")
+    implementation("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta17")
+
+    compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT")
 }
 
-tasks.jar {
-    from(embed.files.map { zipTree(it) })
+toolkitLoomHelper {
+    useMixinRefMap(modData.id)
+    useForgeMixin(modData.id)
 
-    manifest.attributes(
-        mapOf(
-            "FMLCorePlugin" to "club.sk1er.mods.tnttimer.forge.FMLLoadingPlugin",
-            "ModSide" to "CLIENT",
-            "FMLCorePluginContainsFMLMod" to "Yes, yes it does",
-            "TweakClass" to "gg.essential.loader.stage0.EssentialSetupTweaker",
-            "TweakOrder" to "0"
-        )
-    )
+    useTweaker("cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
+
+    useDevAuth("1.2.1")
+    useProperty("mixin.debug.export", "true", GameSide.CLIENT)
+    disableRunConfigs(GameSide.SERVER)
 }
