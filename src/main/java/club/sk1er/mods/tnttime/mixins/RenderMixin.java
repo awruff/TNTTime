@@ -1,0 +1,41 @@
+package club.sk1er.mods.tnttime.mixins;
+
+import club.sk1er.mods.tnttime.TNTTime;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityTNTPrimed;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.awt.*;
+
+@Mixin(Render.class)
+public class RenderMixin {
+    @Unique private Entity tntTime$capturedEntity;
+
+    @Inject(method = "renderLivingLabel", at = @At("HEAD"))
+    private void captureTarget(Entity entityIn, String str, double x, double y, double z, int maxDistance, CallbackInfo ci) {
+        tntTime$capturedEntity = entityIn;
+    }
+
+    @Redirect(
+            method = "renderLivingLabel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/FontRenderer;drawString(Ljava/lang/String;III)I")
+    )
+    private int updateTimer(FontRenderer instance, String text, int x, int y, int color) {
+        if (tntTime$capturedEntity instanceof EntityTNTPrimed) {
+            EntityTNTPrimed tnt = (EntityTNTPrimed) tntTime$capturedEntity;
+
+            final int fuseTimer = TNTTime.playingBedwars ? tnt.fuse - 28 : tnt.fuse;
+            final float green = Math.min(fuseTimer / (TNTTime.playingBedwars ? 52f : 80f), 1f);
+            final Color timerColor = new Color(1f - green, green, 0f);
+            color = timerColor.getRGB();
+        }
+
+        return instance.drawString(text, x, y, color);
+    }
+}

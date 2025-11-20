@@ -1,4 +1,4 @@
-package club.sk1er.mods.tnttimer;
+package club.sk1er.mods.tnttime;
 
 import cc.polyfrost.oneconfig.utils.hypixel.HypixelUtils;
 import net.minecraft.client.Minecraft;
@@ -21,9 +21,10 @@ public class TNTTime {
     public static final String VERSION = "@MOD_VERSION@";
 
     private final Minecraft mc = Minecraft.getMinecraft();
-    private final DecimalFormat timeFormatter = new DecimalFormat("0.00");
     private int checkTimer;
-    private boolean playingBedwars;
+
+    public static final DecimalFormat timeFormatter = new DecimalFormat("0.00");
+    public static boolean playingBedwars;
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
@@ -42,19 +43,19 @@ public class TNTTime {
         this.checkTimer = 0;
 
         if (!HypixelUtils.INSTANCE.isHypixel()) {
-            this.playingBedwars = false;
+            playingBedwars = false;
             return;
         }
 
         final WorldClient world = mc.theWorld;
         if (world == null) {
-            this.playingBedwars = false;
+            playingBedwars = false;
             return;
         }
 
         final Scoreboard scoreboard = world.getScoreboard();
         if (scoreboard == null) {
-            this.playingBedwars = false;
+            playingBedwars = false;
             return;
         }
 
