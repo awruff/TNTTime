@@ -14,9 +14,8 @@ import java.net.URI;
 
 public class TNTTimeConfig extends Config {
     @Button(
-            name = "Looking to customize the nametag?",
-            text = "Install PolyNametag!",
-            size = 2
+            name = "Looking to customize the nametag?", text = "Install PolyNametag!",
+            description = "Opens a link to PolyNametag in your browser.", size = 2
     )
     public Runnable polyNametag = () -> { // polyfrost will become a billion-dollar company after this advertisement
         UDesktop.browse(URI.create("https://modrinth.com/mod/polynametag"));
