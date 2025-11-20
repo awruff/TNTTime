@@ -1,6 +1,6 @@
 package club.sk1er.mods.tnttime.mixins;
 
-import club.sk1er.mods.tnttime.TNTTime;
+import club.sk1er.mods.tnttime.utils.FuseUtils;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
@@ -31,10 +31,7 @@ public class RenderMixin {
         if (tntTime$capturedEntity instanceof EntityTNTPrimed) {
             EntityTNTPrimed tnt = (EntityTNTPrimed) tntTime$capturedEntity;
 
-            final int fuseTimer = TNTTime.playingBedwars ? tnt.fuse - 28 : tnt.fuse;
-            final float green = Math.min(fuseTimer / (TNTTime.playingBedwars ? 52f : 80f), 1f);
-            final Color timerColor = new Color(1f - green, green, 0f);
-            color = timerColor.getRGB();
+            color = FuseUtils.getFuseColor(tnt.fuse).getRGB();
         }
 
         return color;
