@@ -1,4 +1,4 @@
-package club.sk1er.mods.tnttime.utils;
+package com.github.chromaticforge.countdown.utils;
 
 import java.util.function.Supplier;
 

@@ -1,6 +1,6 @@
-package club.sk1er.mods.tnttime.mixins;
+package com.github.chromaticforge.countdown.mixins;
 
-import club.sk1er.mods.tnttime.utils.ConfigUtils;
+import com.github.chromaticforge.countdown.utils.ConfigUtils;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;

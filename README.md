@@ -1,6 +1,21 @@
-## TNT Time
-Display the time until detonation of a piece of TNT.
-Now with OneConfig.
+<a href="https://github.com/chromaticforge/rawinput" target="_blank">
+  <img alt="github" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg">
+</a>
+
+<a href="https://modrinth.com/mod/freelook-oneconfig" target="_blank" rel="nofollow">
+  <img alt="modrinth" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg">
+</a>
+
+<a href="https://modrinth.com/mod/oneconfig" target="_blank">
+    <img alt="oneconfig" height="56" src="https://polyfrost.org/media/branding/badges/badge_1.svg">
+</a>
+
+<a href="https://discord.gg/gGuQ55PCRn" target="_blank">
+    <img alt="discord" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-plural_vector.svg">
+</a>
+
+## TNT Countdown
+Displays a countdown timer above primed TNT. (Original idea by Sk1er)
 
 ---
 
@@ -11,6 +26,8 @@ Now with OneConfig.
   - Custom Text
   - Custom Text color
 - No longer depends on essential.
+- Supports more servers (Join the [Discord](https://discord.gg/gGuQ55PCRn) to suggest other servers!)
+    - Minemen
 
 ### Planned features...
 

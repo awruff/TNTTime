@@ -1,23 +1,22 @@
-package club.sk1er.mods.tnttime.config;
+package com.github.chromaticforge.countdown.config;
 
 import cc.polyfrost.oneconfig.config.Config;
 import cc.polyfrost.oneconfig.config.annotations.Button;
 import cc.polyfrost.oneconfig.config.annotations.Color;
-import cc.polyfrost.oneconfig.config.annotations.Switch;
 import cc.polyfrost.oneconfig.config.annotations.Text;
 import cc.polyfrost.oneconfig.config.core.OneColor;
 import cc.polyfrost.oneconfig.config.data.Mod;
 import cc.polyfrost.oneconfig.config.data.ModType;
 import cc.polyfrost.oneconfig.libs.universal.UDesktop;
-import club.sk1er.mods.tnttime.TNTTime;
+import com.github.chromaticforge.countdown.TNTCountdown;
 import net.minecraftforge.fml.common.Loader;
 
 import java.net.URI;
 
-public class TNTTimeConfig extends Config {
+public class TNTCountdownConfig extends Config {
     @Text(
             name = "Timer Text",
-            description = "Customize the displayed text. @VALUE@ will be replaced with the time."
+            description = "Customize the displayed text. @VALUE@ will be replaced with the countdown."
     )
     public static String timerText = "%VALUE%";
 
@@ -43,8 +42,8 @@ public class TNTTimeConfig extends Config {
         UDesktop.browse(URI.create("https://modrinth.com/mod/polynametag"));
     };
 
-    public TNTTimeConfig() {
-        super(new Mod(TNTTime.NAME, ModType.HYPIXEL), TNTTime.ID + ".json");
+    public TNTCountdownConfig() {
+        super(new Mod(TNTCountdown.NAME, ModType.HYPIXEL, "/assets/" + TNTCountdown.ID + "/icon.png"), TNTCountdown.ID + ".json");
         initialize();
 
         hideIf("polyNametag", () -> Loader.isModLoaded("polynametag"));

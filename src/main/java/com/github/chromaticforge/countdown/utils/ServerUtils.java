@@ -1,4 +1,4 @@
-package club.sk1er.mods.tnttime.utils;
+package com.github.chromaticforge.countdown.utils;
 
 import cc.polyfrost.oneconfig.utils.hypixel.HypixelUtils;
 import net.minecraft.client.Minecraft;

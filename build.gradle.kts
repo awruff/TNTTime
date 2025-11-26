@@ -49,7 +49,7 @@ toolkitReleases {
     }
 
     modrinth {
-        projectId.set("tnttime-oneconfig")
+        projectId.set("pQFm0mAJ")
         dependencies.add(ModDependency("oneconfig", DependencyType.EMBEDDED))
     }
 }

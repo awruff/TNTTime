@@ -1,7 +1,7 @@
-package club.sk1er.mods.tnttime.utils;
+package com.github.chromaticforge.countdown.utils;
 
 import cc.polyfrost.oneconfig.config.core.OneColor;
-import club.sk1er.mods.tnttime.config.TNTTimeConfig;
+import com.github.chromaticforge.countdown.config.TNTCountdownConfig;
 
 import java.awt.*;
 import java.text.DecimalFormat;
@@ -19,7 +19,7 @@ public class ConfigUtils {
 
         String time = DECIMAL_FORMATTER.format(fuseTimer / 20f);
 
-        return TNTTimeConfig.timerText.replace("%VALUE%", time);
+        return TNTCountdownConfig.timerText.replace("%VALUE%", time);
     }
 
     public static Color getFuseColor(int ticks) {
@@ -34,8 +34,8 @@ public class ConfigUtils {
     }
 
     private static Color interpolateColor(float progress) {
-        OneColor start = TNTTimeConfig.startColor;
-        OneColor end = TNTTimeConfig.endColor;
+        OneColor start = TNTCountdownConfig.startColor;
+        OneColor end = TNTCountdownConfig.endColor;
 
         int r = lerp(start.getRed(), end.getRed(), progress);
         int g = lerp(start.getGreen(), end.getGreen(), progress);
