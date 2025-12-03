@@ -3,8 +3,9 @@ package com.github.chromaticforge.countdown.utils;
 import java.util.function.Supplier;
 
 public enum ServerFuses {
-    HYPIXEL_BEDWARS(-28, ServerUtils::isHypixelBedwars),
-    MINEMEN(-29, ServerUtils::isMinemen);
+    HYPIXEL_BEDWARS(-28, ServerUtils::isHypixel),
+    MINEMEN(-29, ServerUtils::isMinemen),
+    VOXYL(-31, ServerUtils::isVoxyl);
 
     private final int adjustment;
     private final Supplier<Boolean> condition;

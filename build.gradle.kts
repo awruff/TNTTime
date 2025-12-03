@@ -40,7 +40,13 @@ toolkitLoomHelper {
 }
 
 toolkitReleases {
-    versionType = VersionType.RELEASE
+    val ver = project.properties["mod.version"] as String
+
+    versionType = if (ver.contains("alpha")) {
+        VersionType.ALPHA
+    } else {
+        VersionType.RELEASE
+    }
 
     val changelog = rootProject.file("changelogs/${modData.version}.md")
 
